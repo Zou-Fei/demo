@@ -10,4 +10,9 @@ public class sayGreetingServiceImp implements sayGreetingService {
     public String sayGreeting(String name) {
         return "Hello , "+name;
     }
+
+    @Override
+    public String getError() {
+        return "Sorry,I am late！";
+    }
 }

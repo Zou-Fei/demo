@@ -19,4 +19,9 @@ public class SayHelloController {
         return sayGreetingService.sayGreeting(name);
     }
 
+    @RequestMapping("/getError")
+    public String getError(){
+        return sayGreetingService.getError();
+    }
+
 }
