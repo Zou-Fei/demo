@@ -8,7 +8,7 @@ public class sayGreetingServiceImp implements sayGreetingService {
 
     @Override
     public String sayGreeting(String name) {
-        return "Hello , "+name;
+        return "Hello , "+name+" !";
     }
 
     @Override

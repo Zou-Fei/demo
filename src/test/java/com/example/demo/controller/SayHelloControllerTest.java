@@ -17,7 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,12 +42,23 @@ public class SayHelloControllerTest {
 
     @Test
     public void getGreeting() throws Exception{
-        //System.out.println(sayHelloController.getGreeting("zoufei"));
-        //System.out.println(sayGreetingService.sayGreeting("zoufei"));
+//        System.out.println(sayHelloController.getGreeting("zoufei"));
+//        System.out.println(sayGreetingService.sayGreeting("zoufei"));
 //        mvc.perform(MockMvcRequestBuilders.get("/greeting?name=zoufei").accept(MediaType.APPLICATION_JSON))
 //                .andExpect(MockMvcResultMatchers.status().isOk())
 //                .andDo(MockMvcResultHandlers.print())
 //                .andReturn();
+
+        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("Hello world!")));
+
+
+
+
+//        System.out.println(sayHelloController.getGreeting("abc"));
+//        System.out.println(sayHelloController.getHello());
+
 
     }
 

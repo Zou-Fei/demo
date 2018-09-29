@@ -12,10 +12,14 @@ public class SayHelloController {
     @Autowired
     private sayGreetingService sayGreetingService;
 
+    @RequestMapping("/")
+    public String getHello(){
+        return "Hello world!";
+    }
 
     @RequestMapping("/greeting")
     public String getGreeting(String name){
-       // return "Hello , "+ name;
+        // return "Hello , "+ name;
         return sayGreetingService.sayGreeting(name);
     }
 
