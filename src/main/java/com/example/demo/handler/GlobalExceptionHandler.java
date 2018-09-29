@@ -45,5 +45,4 @@ public class GlobalExceptionHandler {
         r.setUrl(req.getRequestURL().toString());
         return r;
     }
-
 }
