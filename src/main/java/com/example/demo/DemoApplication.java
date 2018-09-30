@@ -5,19 +5,26 @@ import com.example.demo.listener.ApplicationReadyEventListener;
 import com.example.demo.listener.ApplicationStartedEventListener;
 import com.example.demo.test.FooProperties;
 import com.example.demo.test.PostsProperties;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import java.util.List;
 import java.util.Map;
 
+
 @SpringBootApplication
+@EnableAdminServer
 public class DemoApplication {
 
 	public static void main(String[] args) {
@@ -49,11 +56,20 @@ public class DemoApplication {
 //        System.out.println(context.getEnvironment().getProperty("com.demo.chinese.value"));
 
         //添加监听器事件
-        SpringApplication app = new SpringApplication(DemoApplication.class);
-        app.addListeners(new ApplicationPreparedEventListener(),new ApplicationReadyEventListener(),new ApplicationStartedEventListener());
-        app.run(args);
+//        SpringApplication app = new SpringApplication(DemoApplication.class);
+//        app.addListeners(new ApplicationPreparedEventListener(),new ApplicationReadyEventListener(),new ApplicationStartedEventListener());
+//        app.run(args);
 
-
-
+        SpringApplication.run(DemoApplication.class, args);
 	}
+
+    @Configuration
+    public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests().anyRequest().permitAll()
+                    .and().csrf().disable();
+        }
+    }
 }
+
