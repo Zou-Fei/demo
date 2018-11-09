@@ -24,7 +24,7 @@ import java.util.Map;
 
 
 @SpringBootApplication
-@EnableAdminServer
+//@EnableAdminServer
 public class DemoApplication {
 
 	public static void main(String[] args) {
@@ -63,13 +63,13 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
 	}
 
-    @Configuration
-    public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests().anyRequest().permitAll()
-                    .and().csrf().disable();
-        }
-    }
+//    @Configuration
+//    public static class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
+//        @Override
+//        protected void configure(HttpSecurity http) throws Exception {
+//            http.authorizeRequests().anyRequest().permitAll()
+//                    .and().csrf().disable();
+//        }
+//    }
 }
 
